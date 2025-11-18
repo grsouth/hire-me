@@ -19,7 +19,11 @@ const Header = ({ data }: HeaderProps) => {
           <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a>
         </p>
         <div className="header-actions">
-          <a className="ghost-button" href="/GarrettSoutham_Resume.pdf" download>
+          <a
+            className="ghost-button"
+            href={`${import.meta.env.BASE_URL}GarrettSoutham_Resume.pdf`}
+            download
+          >
             Download a boring PDF version of my resume
           </a>
         </div>
