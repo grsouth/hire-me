@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   EducationBlock,
   ExperienceBlock,
@@ -13,6 +13,21 @@ type ExpandedProps = {
 };
 
 const Expanded = ({ section, onClose }: ExpandedProps) => {
+  const [renderSection, setRenderSection] = useState(section);
+  const isClosing = useMemo(() => !section && !!renderSection, [section, renderSection]);
+
+  useEffect(() => {
+    if (section) {
+      setRenderSection(section);
+      return;
+    }
+
+    if (renderSection) {
+      const timeout = setTimeout(() => setRenderSection(null), 220);
+      return () => clearTimeout(timeout);
+    }
+  }, [section, renderSection]);
+
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
@@ -21,26 +36,26 @@ const Expanded = ({ section, onClose }: ExpandedProps) => {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  if (!section) return null;
+  if (!renderSection) return null;
 
   return (
     <div
-      className="expanded-overlay"
+      className={`expanded-overlay ${isClosing ? "is-exiting" : "is-entering"}`}
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
       <article
-        className="expanded-card"
+        className={`expanded-card ${isClosing ? "is-exiting" : "is-entering"}`}
         onClick={(event) => event.stopPropagation()}
-        aria-label={`${section.title} details`}
+        aria-label={`${renderSection.title} details`}
       >
         <div className="expanded-header">
           <div className="expanded-title">
-            {section.icon && <span className="card-icon">{section.icon}</span>}
+            {renderSection.icon && <span className="card-icon">{renderSection.icon}</span>}
             <div>
               <p className="eyebrow">Expanded view</p>
-              <h2>{section.title}</h2>
+              <h2>{renderSection.title}</h2>
             </div>
           </div>
           <button className="close-button" onClick={onClose} type="button">
@@ -49,7 +64,7 @@ const Expanded = ({ section, onClose }: ExpandedProps) => {
         </div>
 
         <div className="expanded-body">
-          {section.details.map((block, index) => (
+          {renderSection.details.map((block, index) => (
             <DetailBlock block={block} key={`${block.type}-${index}`} />
           ))}
         </div>

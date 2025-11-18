@@ -13,16 +13,11 @@ export interface ResumeData {
     label: string;
     url: string;
   }[];
+  summary: SummarySection;
   sections: ResumeSection[];
 }
 
-export type ResumeSectionId =
-  | "summary"
-  | "skills"
-  | "experience"
-  | "education"
-  | "otherExperience"
-  | "funFacts";
+export type ResumeSectionId = "skills" | "experience" | "education" | "otherExperience";
 
 export interface ResumeSection {
   id: ResumeSectionId;
@@ -30,6 +25,11 @@ export interface ResumeSection {
   icon?: string; // emoji or icon name
   short: string; // one-liner shown on small card
   details: SectionDetailBlock[]; // expanded content
+}
+
+export interface SummarySection {
+  short: string;
+  details: SectionDetailBlock[];
 }
 
 export type SectionDetailBlock =
@@ -87,37 +87,32 @@ export const resumeData: ResumeData = {
 
   links: [],
 
-  sections: [
-    // SUMMARY
-    {
-      id: "summary",
-      title: "Summary",
-      icon: "🧑‍💻",
-      short:
-        "Junior software engineer building automation and data tools for radar systems.",
-      details: [
-        {
-          type: "paragraph",
-          text:
-            "Junior software engineer with hands-on experience building internal tools for radar sensor testing, monitoring, and data visualization.",
-        },
-        {
-          type: "paragraph",
-          text:
-            "Comfortable working across hardware, firmware, and software teams to streamline workflows, improve analysis speed, and surface clear insights for stakeholders.",
-        },
-        {
-          type: "list",
-          title: "What I like working on",
-          items: [
-            "Automation tools that remove repetitive work for engineers and QA",
-            "Dashboards and visualizations that make complex test data easy to understand",
-            "Reliable internal utilities that improve system performance and debug velocity",
-          ],
-        },
-      ],
-    },
+  summary: {
+    short: "Junior software engineer building automation and data tools for radar systems.",
+    details: [
+      {
+        type: "paragraph",
+        text:
+          "Junior software engineer with hands-on experience building internal tools for radar sensor testing, monitoring, and data visualization.",
+      },
+      {
+        type: "paragraph",
+        text:
+          "Comfortable working across hardware, firmware, and software teams to streamline workflows, improve analysis speed, and surface clear insights for stakeholders.",
+      },
+      {
+        type: "list",
+        title: "What I like working on",
+        items: [
+          "Automation tools that remove repetitive work for engineers and QA",
+          "Dashboards and visualizations that make complex test data easy to understand",
+          "Reliable internal utilities that improve system performance and debug velocity",
+        ],
+      },
+    ],
+  },
 
+  sections: [
     // SKILLS
     {
       id: "skills",
@@ -128,7 +123,7 @@ export const resumeData: ResumeData = {
         {
           type: "list",
           title: "Programming Languages",
-          items: ["C#", "C", "C++", "Java", "Python"],
+          items: ["C", "C++", "C#", "Java", "Python"],
         },
         {
           type: "list",
@@ -202,7 +197,7 @@ export const resumeData: ResumeData = {
       id: "education",
       title: "Education",
       icon: "🎓",
-      short: "B.S. Computer Science, Brigham Young University (Dec 2025).",
+      short: "B.S. Computer Science, Brigham Young University.",
       details: [
         {
           type: "education",
@@ -212,8 +207,8 @@ export const resumeData: ResumeData = {
               degree: "B.S., Computer Science",
               graduation: "Dec 2025 (expected)",
               details: [
-                "Coursework in C, C++, Java, Python, and data structures.",
-                "Completed classes in discrete mathematics, web programming, computer systems (C/x86), and computational theory.",
+                "Gained experience working in C, C++, Java, Python.",
+                "Coursework in discrete mathematics, web programming, computer systems (C/x86), databases, and computational theory.",
                 "Supporting math and science coursework including calculus and physics.",
               ],
             },
@@ -222,12 +217,13 @@ export const resumeData: ResumeData = {
       ],
     },
 
-    // OTHER EXPERIENCE
+    // OTHER EXPERIENCE & FUN
     {
       id: "otherExperience",
-      title: "Other Experience",
+      title: "Other Experience & Fun",
       icon: "🎭",
-      short: "Technical Director & Theatrical Lighting Designer for student and professional shows.",
+      short:
+        "Technical direction, lighting design, and a few personal tidbits that show curiosity and creativity.",
       details: [
         {
           type: "experience",
@@ -245,26 +241,16 @@ export const resumeData: ResumeData = {
             },
           ],
         },
-      ],
-    },
-
-    // FUN FACTS (placeholders for you to customize)
-    {
-      id: "funFacts",
-      title: "Fun Facts",
-      icon: "✨",
-      short: "A few non-work things that still show how I think and work.",
-      details: [
         {
           type: "paragraph",
           text:
-            "Use this section to show a bit of personality—hobbies, side projects, or interests that still signal curiosity, discipline, or creativity.",
+            "A few non-work things that still show how I think and work—curiosity, discipline, and creativity.",
         },
         {
           type: "list",
-          title: "Ideas you could put here",
+          title: "Fun bits",
           items: [
-            "Personal tech or maker projects you’ve built for fun.",
+            "Personal tech or maker projects built for fun.",
             "Volunteer work, mentoring, or community involvement.",
             "Unusual skills or interests that make for a good conversation starter.",
           ],

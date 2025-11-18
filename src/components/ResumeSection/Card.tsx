@@ -10,8 +10,6 @@ const Card = ({ section, isActive, onOpen }: CardProps) => {
   return (
     <button
       className={`resume-card ${isActive ? "is-active" : ""}`}
-      onMouseEnter={onOpen}
-      onFocus={onOpen}
       onClick={onOpen}
       type="button"
       aria-expanded={isActive}
