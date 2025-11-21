@@ -82,6 +82,8 @@ const DetailBlock = ({ block }: DetailBlockProps) => {
   switch (block.type) {
     case "paragraph":
       return <Paragraph textBlock={block} />;
+    case "paragraphTitled":
+      return <TitledParagraph titledBlock={block} />;
     case "list":
       return <List listBlock={block} />;
     case "experience":
@@ -105,6 +107,13 @@ const renderWithBreaks = (text: string) =>
 
 const Paragraph = ({ textBlock }: { textBlock: ParagraphBlock }) => (
   <p className="detail-paragraph detail-block">{renderWithBreaks(textBlock.text)}</p>
+);
+
+const TitledParagraph = ({ titledBlock }: { titledBlock: TitledParagraphBlock }) => (
+  <section className="detail-block titled-paragraph">
+    <p className="titled-paragraph__title">{titledBlock.title}</p>
+    <p className="detail-paragraph titled-paragraph__body">{renderWithBreaks(titledBlock.text)}</p>
+  </section>
 );
 
 const List = ({ listBlock }: { listBlock: ListBlock }) => (
