@@ -179,12 +179,16 @@ const Education = ({ educationBlock }: { educationBlock: EducationBlock }) => (
 
 const ParagraphImage = ({ imageBlock }: { imageBlock: ParagraphWithImageBlock }) => (
   <section className="detail-block paragraph-image-grid">
-    {imageBlock.entries.map((entry) => (
-      <article className="paragraph-image-card" key={entry.text}>
+    {imageBlock.entries.map((entry, index) => (
+      <article className="paragraph-image-card" key={`${entry.image}-${index}`}>
         <div className="paragraph-image-media">
           <img src={entry.image} alt={entry.alt ?? entry.text} loading="lazy" />
         </div>
-        <p className="detail-paragraph">{renderWithBreaks(entry.text)}</p>
+        {entry.text?.trim() && (
+          <p className="detail-paragraph paragraph-image-text">
+            {renderWithBreaks(entry.text)}
+          </p>
+        )}
       </article>
     ))}
   </section>

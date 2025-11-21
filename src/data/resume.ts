@@ -101,7 +101,7 @@ export const resumeData: ResumeData = {
   links: [],
 
   summary: {
-    short: "I help radar teams move faster by building the small tools that make their work easier.",
+    short: "I love using my technical skills to build useful things.",
     details: [
       {
         type: "paragraph",
@@ -136,7 +136,7 @@ export const resumeData: ResumeData = {
         {
           type: "paragraph",
           text:
-            "My day-to-day stack depends on the problem—sometimes it’s C or C# for hardware-adjacent tasks, other times it’s Python scripts glued together with .NET tools and Linux utilities.",
+            "I have a strong foundation in object-oriented programming and supporting software development tools. On personal projects I love working with Linux and writing functional code, and at work I've gained experience working with larger enterprise systems, including .NET applications and CI/CD pipelines. \n I love learning new languages and tools, and picking up whatever will help me solve the problem at hand.",
         },
         {
           type: "list",
@@ -162,8 +162,8 @@ export const resumeData: ResumeData = {
           title: "Data & Automation",
           items: [
             "Data analysis and reporting for hardware/firmware testing",
-            "Automation strategies for radar sensor test sites",
-            "Dashboards that non-engineers can understand",
+            "Automation strategies data collection and report generation",
+            "Creating dashboards and reports that both engineers and non-engineers can understand",
           ],
         },
       ],
@@ -211,9 +211,9 @@ export const resumeData: ResumeData = {
           entries: [
             {
               text:
-                "So much of my work revolves around the Wavetronix Wave sensor. I keep the devices healthy, build tools around their telemetry, and make sure the data they emit is actionable.",
+                "",
               image: `${import.meta.env.BASE_URL}wave_sensor.jpg`,
-              alt: "Wavetronix Wave sensor mounted outdoors",
+              alt: "Wavetronix sensor mounted outdoors",
             },
           ],
         },
@@ -251,7 +251,7 @@ export const resumeData: ResumeData = {
       id: "otherExperience",
       title: "Other Experience, Projects, and Fun Facts",
       icon: "🎭",
-      short: "Technical direction, lighting design, 3D printing, and personal projects.",
+      short: "Technical Theater, 3D Printing, and Personal Projects.",
       details: [
         {
           type: "paragraphImage",

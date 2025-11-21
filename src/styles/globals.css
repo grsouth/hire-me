@@ -89,99 +89,12 @@ a {
   margin-top: 12px;
 }
 
-.summary-card {
-  margin-top: 16px;
-  padding: 14px 12px;
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  background: var(--card);
-  box-shadow: 0 10px 28px -26px rgba(0, 0, 0, 0.45);
-  width: 100%;
-  max-width: 680px;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-}
-
-.summary-card:hover,
-.summary-card:focus-visible {
-  outline: none;
-  border-color: rgba(124, 58, 237, 0.6);
-  box-shadow: 0 18px 34px -26px rgba(0, 0, 0, 0.65);
-  transform: translateY(-2px);
-}
-
-.summary-card.is-open {
-  border-color: rgba(124, 58, 237, 0.8);
-}
-
-.summary-card-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.summary-head-text {
-  flex: 1;
-  text-align: center;
-}
-
-.summary-short {
-  margin: 0 0 10px;
+.summary-inline {
+  margin: 18px 0 0;
   color: #cbd5e1;
   font-weight: 600;
-  font-size: 17px;
-  text-align: center;
-}
-
-.summary-details {
-  display: grid;
-  gap: 10px;
-}
-
-.summary-paragraph {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.6;
-}
-
-.summary-list {
-  margin: 0;
-}
-
-.summary-list-title {
-  margin: 0 0 4px;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: #cbd5e1;
-}
-
-.summary-list ul {
-  margin: 0;
-  padding-left: 18px;
-  color: var(--muted);
-  line-height: 1.5;
-}
-
-.summary-details {
-  margin-top: 8px;
-  display: grid;
-  gap: 10px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.summary-card.is-open .summary-details {
-  max-height: 480px;
-}
-
-.chevron {
-  font-size: 22px;
-  color: var(--muted);
-  line-height: 1;
+  font-size: 18px;
+  text-align: left;
 }
 
 .ghost-button {
@@ -211,7 +124,7 @@ a {
   aspect-ratio: 1 / 1;
   border-radius: 22px;
   border: 1px solid var(--border-strong);
-  background: #0b1222 url("/1698_dark.png") center/cover no-repeat;
+  background: #0b1222 url("/profilepic_dark.png") center/cover no-repeat;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 38px -28px #000;
   justify-self: end;
   align-self: start;
@@ -421,10 +334,10 @@ a {
   gap: 8px;
 }
 
-.paragraph-image-card .detail-paragraph {
+.paragraph-image-text {
   font-size: 14px;
   color: #ced7f3;
-  margin-top: 4px;
+  margin: 4px 0 0;
 }
 
 .paragraph-image-media {
@@ -432,14 +345,13 @@ a {
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--border-strong);
-  aspect-ratio: 1 / 1;
+  margin-bottom: 6px;
 }
 
 .paragraph-image-media img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
 }
 
 .detail-block h3,
