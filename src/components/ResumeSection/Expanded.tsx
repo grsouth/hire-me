@@ -4,6 +4,7 @@ import {
   ExperienceBlock,
   ListBlock,
   ParagraphBlock,
+  ParagraphWithImageBlock,
   ResumeSection,
 } from "../../data/resume";
 
@@ -87,13 +88,23 @@ const DetailBlock = ({ block }: DetailBlockProps) => {
       return <Experience experienceBlock={block} />;
     case "education":
       return <Education educationBlock={block} />;
+    case "paragraphImage":
+      return <ParagraphImage imageBlock={block} />;
     default:
       return null;
   }
 };
 
+const renderWithBreaks = (text: string) =>
+  text.split("\n").map((line, index, arr) => (
+    <span key={`line-${index}`}>
+      {line}
+      {index < arr.length - 1 && <br />}
+    </span>
+  ));
+
 const Paragraph = ({ textBlock }: { textBlock: ParagraphBlock }) => (
-  <p className="detail-paragraph">{textBlock.text}</p>
+  <p className="detail-paragraph detail-block">{renderWithBreaks(textBlock.text)}</p>
 );
 
 const List = ({ listBlock }: { listBlock: ListBlock }) => (
@@ -108,11 +119,11 @@ const List = ({ listBlock }: { listBlock: ListBlock }) => (
 );
 
 const Experience = ({ experienceBlock }: { experienceBlock: ExperienceBlock }) => (
-  <section className="detail-block">
+  <section className="detail-block experience-block">
     <h3>Experience</h3>
     <div className="experience-items">
       {experienceBlock.items.map((item) => (
-        <div className="experience-item" key={`${item.company}-${item.role}`}>
+        <article className="experience-item" key={`${item.company}-${item.role}`}>
           <div className="experience-head">
             <div>
               <p className="eyebrow">{item.company}</p>
@@ -122,40 +133,60 @@ const Experience = ({ experienceBlock }: { experienceBlock: ExperienceBlock }) =
               {item.start} — {item.end}
             </p>
           </div>
-          <ul className="detail-list">
+          <div className="experience-body">
             {item.bullets.map((bullet) => (
-              <li key={bullet}>{bullet}</li>
+              <p className="detail-paragraph" key={bullet}>
+                {renderWithBreaks(bullet)}
+              </p>
             ))}
-          </ul>
-        </div>
+          </div>
+        </article>
       ))}
     </div>
   </section>
 );
 
 const Education = ({ educationBlock }: { educationBlock: EducationBlock }) => (
-  <section className="detail-block">
+  <section className="detail-block education-block">
     <h3>Education</h3>
     <div className="education-items">
       {educationBlock.items.map((item) => (
-        <div className="education-item" key={`${item.school}-${item.degree}`}>
+        <article className="education-item" key={`${item.school}-${item.degree}`}>
           <div className="experience-head">
             <div>
               <p className="eyebrow">{item.school}</p>
               <h4>{item.degree}</h4>
+              <p className="experience-dates">{item.graduation}</p>
             </div>
-            <p className="experience-dates">{item.graduation}</p>
+            {item.logo && (
+              <div className="education-logo">
+                <img src={item.logo} alt={`${item.school} logo`} loading="lazy" />
+              </div>
+            )}
           </div>
-          {item.details && (
-            <ul className="detail-list">
-              {item.details.map((detail) => (
-                <li key={detail}>{detail}</li>
-              ))}
-            </ul>
-          )}
-        </div>
+          <div className="education-body">
+            {item.details?.map((detail) => (
+              <p className="detail-paragraph" key={detail}>
+                {renderWithBreaks(detail)}
+              </p>
+            ))}
+          </div>
+        </article>
       ))}
     </div>
+  </section>
+);
+
+const ParagraphImage = ({ imageBlock }: { imageBlock: ParagraphWithImageBlock }) => (
+  <section className="detail-block paragraph-image-grid">
+    {imageBlock.entries.map((entry) => (
+      <article className="paragraph-image-card" key={entry.text}>
+        <div className="paragraph-image-media">
+          <img src={entry.image} alt={entry.alt ?? entry.text} loading="lazy" />
+        </div>
+        <p className="detail-paragraph">{renderWithBreaks(entry.text)}</p>
+      </article>
+    ))}
   </section>
 );
 
