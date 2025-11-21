@@ -174,7 +174,7 @@ export const resumeData: ResumeData = {
       id: "experience",
       title: "Job Experience",
       icon: "💼",
-      short: "Engineering Assistant who keeps radar test sites running and builds the tools everyone uses.",
+      short: "Engineering Assistant with QA and Software Development experience.",
       details: [
         {
           type: "experience",

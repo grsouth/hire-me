@@ -6,6 +6,7 @@ type HeaderProps = {
 
 const Header = ({ data }: HeaderProps) => {
   const tel = data.contact.phone.replace(/[^\d+]/g, "");
+  const photoUrl = `${import.meta.env.BASE_URL}profilepic_dark.png`;
 
   return (
     <header className="site-header">
@@ -29,7 +30,9 @@ const Header = ({ data }: HeaderProps) => {
         <p className="summary-inline">{data.summary.short}</p>
       </div>
 
-      <div className="header-photo" aria-hidden />
+      <div className="header-photo" aria-hidden>
+        <img src={photoUrl} alt="" loading="lazy" />
+      </div>
     </header>
   );
 };

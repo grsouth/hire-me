@@ -124,10 +124,17 @@ a {
   aspect-ratio: 1 / 1;
   border-radius: 22px;
   border: 1px solid var(--border-strong);
-  background: #0b1222 url("/profilepic_dark.png") center/cover no-repeat;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 20px 38px -28px #000;
   justify-self: end;
   align-self: start;
+  overflow: hidden;
+  background: #0b1222;
+}
+
+.header-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (max-width: 780px) {
