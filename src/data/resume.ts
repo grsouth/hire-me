@@ -237,7 +237,7 @@ export const resumeData: ResumeData = {
               logo: `${import.meta.env.BASE_URL}byu_logo_square.png`,
               details: [
                 "Pursuing my Computer Science degree gave me a lot of hands-on work in C, C++, Java, and Python. There was a strong emphasis on understanding core computer science principles, like algorithms and data structures.",
-                "My main classes were a deep dive into discrete math, web programming, computer systems (C/x86), databases, and computational theory. I got a lot of experience writing object oriented code, practicing test driven development, and working on larger projects in teams.",
+                "My main classes were a deep dive into discrete math, web programming, computer systems (C/x86), databases, and computational theory. I got a lot of experience writing object oriented code, practicing test driven development, and working on larger projects.",
                 "I had supporting calculus and physics coursework. Also noteworthy was some great elective experiences, including Blockchain development, computer security, mechanical engineering, and business ethics.",
               ],
             },
