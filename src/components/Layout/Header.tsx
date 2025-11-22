@@ -3,15 +3,17 @@ import { ResumeData } from "../../data/resume";
 
 type HeaderProps = {
   data: ResumeData;
+  onPhotoEasterEgg?: () => void;
 };
 
-const Header = ({ data }: HeaderProps) => {
+const Header = ({ data, onPhotoEasterEgg }: HeaderProps) => {
   const [isSpinning, setIsSpinning] = useState(false);
   const tel = data.contact.phone.replace(/[^\d+]/g, "");
   const photoUrl = `${import.meta.env.BASE_URL}profilepic_dark.png`;
 
   const handlePhotoClick = () => {
     setIsSpinning(true);
+    onPhotoEasterEgg?.();
   };
 
   return (

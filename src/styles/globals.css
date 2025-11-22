@@ -122,6 +122,17 @@ a {
   box-shadow: 0 10px 25px -20px rgba(124, 58, 237, 0.6);
 }
 
+.ghost-button--secondary {
+  background: rgba(14, 165, 233, 0.24);
+  border-color: rgba(14, 165, 233, 0.4);
+  color: #dbeafe;
+}
+
+.ghost-button--secondary:hover {
+  background: rgba(14, 165, 233, 0.32);
+  box-shadow: 0 10px 25px -20px rgba(14, 165, 233, 0.6);
+}
+
 .header-photo {
   width: min(200px, 28vw);
   aspect-ratio: 1 / 1;
@@ -181,6 +192,17 @@ a {
     justify-self: center;
     margin-bottom: 8px;
   }
+}
+
+.dwasm-launch {
+  display: flex;
+  justify-content: center;
+  margin: 64px 0 0;
+}
+
+.dwasm-launch button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .section-grid {
@@ -307,12 +329,15 @@ a {
 .close-button {
   border: 1px solid var(--border);
   background: #1f2937;
-  padding: 8px 12px;
-  border-radius: 12px;
-  font-weight: 600;
+  padding: 6px 10px;
+  min-width: 32px;
+  border-radius: 10px;
+  font-weight: 700;
   cursor: pointer;
   color: #e5e7eb;
   transition: all 0.2s ease;
+  font-size: 18px;
+  line-height: 1;
 }
 
 .close-button:hover {
@@ -465,6 +490,78 @@ a {
   color: var(--muted);
   font-weight: 600;
   font-size: 13px;
+}
+
+.dwasm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(6, 8, 15, 0.82);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 30;
+  animation: overlayIn 160ms ease forwards;
+}
+
+.dwasm-card {
+  width: min(1400px, 96vw);
+  max-height: 90vh;
+  background: var(--card);
+  border-radius: 20px;
+  border: 1px solid var(--border-strong);
+  box-shadow: var(--shadow);
+  padding: 20px 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dwasm-header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  border-bottom: none;
+  padding-bottom: 4px;
+  margin-bottom: 6px;
+}
+
+.dwasm-title {
+  margin: 4px 0 0;
+  font-size: 22px;
+}
+
+.dwasm-subtitle {
+  margin: 6px 0 0;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.dwasm-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.dwasm-callouts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.dwasm-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  flex: 1;
+  min-height: 560px;
+  max-height: 76vh;
+  border-radius: 14px;
+  border: 1px solid var(--border-strong);
+  background: #000;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
 }
 
 @keyframes overlayIn {
