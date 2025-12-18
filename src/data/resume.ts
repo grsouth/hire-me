@@ -102,7 +102,7 @@ export const resumeData: ResumeData = {
   headline: "Software Engineer",
   contact: {
     phone: "(801) 372-4562",
-    email: "garrettsoutham@proton.me",
+    email: "mail@garrettsoutham.com",
   },
 
   links: [],
