@@ -9,8 +9,8 @@
   --card-raised: #0b1222;
   --border: #1f2937;
   --border-strong: #273449;
-  --accent: #7c3aed;
-  --accent-soft: rgba(124, 58, 237, 0.18);
+  --accent: #8c3b4a;
+  --accent-soft: rgba(140, 59, 74, 0.18);
   --shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.6);
 }
 
@@ -23,8 +23,8 @@
 body {
   margin: 0;
   background:
-    radial-gradient(120% 120% at 20% 12%, rgba(124, 58, 237, 0.06), transparent 45%),
-    radial-gradient(140% 140% at 82% 0%, rgba(14, 165, 233, 0.05), transparent 52%),
+    radial-gradient(120% 120% at 20% 12%, rgba(140, 59, 74, 0.06), transparent 45%),
+    radial-gradient(140% 140% at 82% 0%, rgba(75, 109, 142, 0.05), transparent 52%),
     linear-gradient(180deg, #111827, #0d1426 60%, #0a0f1d);
   color: var(--text);
   font-family: "Fantasque Sans Mono", "Inter", "SF Pro Display", system-ui, sans-serif;
@@ -42,7 +42,7 @@ body {
 a {
   color: var(--text);
   text-decoration: underline;
-  text-decoration-color: rgba(124, 58, 237, 0.35);
+  text-decoration-color: rgba(140, 59, 74, 0.35);
   text-decoration-thickness: 2px;
 }
 
@@ -107,9 +107,9 @@ a {
   gap: 8px;
   padding: 12px 16px;
   border-radius: 14px;
-  background: rgba(124, 58, 237, 0.32);
-  color: #e9d5ff;
-  border: 1px solid rgba(124, 58, 237, 0.48);
+  background: rgba(140, 59, 74, 0.32);
+  color: #f2d7dc;
+  border: 1px solid rgba(140, 59, 74, 0.48);
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
@@ -117,20 +117,20 @@ a {
 }
 
 .ghost-button:hover {
-  background: rgba(124, 58, 237, 0.4);
+  background: rgba(140, 59, 74, 0.4);
   transform: translateY(-1px);
-  box-shadow: 0 10px 25px -20px rgba(124, 58, 237, 0.6);
+  box-shadow: 0 10px 25px -20px rgba(140, 59, 74, 0.6);
 }
 
 .ghost-button--secondary {
-  background: rgba(14, 165, 233, 0.24);
-  border-color: rgba(14, 165, 233, 0.4);
-  color: #dbeafe;
+  background: rgba(75, 109, 142, 0.24);
+  border-color: rgba(75, 109, 142, 0.4);
+  color: #d9e2f0;
 }
 
 .ghost-button--secondary:hover {
-  background: rgba(14, 165, 233, 0.32);
-  box-shadow: 0 10px 25px -20px rgba(14, 165, 233, 0.6);
+  background: rgba(75, 109, 142, 0.32);
+  box-shadow: 0 10px 25px -20px rgba(75, 109, 142, 0.6);
 }
 
 .header-photo {
@@ -229,13 +229,13 @@ a {
 .resume-card:focus-visible {
   outline: none;
   transform: translateY(-4px);
-  border-color: rgba(124, 58, 237, 0.5);
-  box-shadow: 0 18px 38px -24px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(124, 58, 237, 0.4);
+  border-color: rgba(140, 59, 74, 0.5);
+  box-shadow: 0 18px 38px -24px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(140, 59, 74, 0.4);
 }
 
 .resume-card.is-active {
-  border-color: rgba(124, 58, 237, 0.8);
-  box-shadow: 0 18px 38px -20px rgba(124, 58, 237, 0.4);
+  border-color: rgba(140, 59, 74, 0.8);
+  box-shadow: 0 18px 38px -20px rgba(140, 59, 74, 0.4);
 }
 
 .card-heading {
@@ -373,7 +373,7 @@ a {
   text-transform: uppercase;
   letter-spacing: 0.04em;
   font-weight: 700;
-  color: #a7b9e7;
+  color: #d7b0b8;
 }
 
 .titled-paragraph__body {
@@ -398,7 +398,7 @@ a {
 
 .paragraph-image-text {
   font-size: 14px;
-  color: #ced7f3;
+  color: #c6d4e6;
   margin: 4px 0 0;
 }
 
