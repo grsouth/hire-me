@@ -183,6 +183,9 @@ const Education = ({ educationBlock }: { educationBlock: EducationBlock }) => (
         </article>
       ))}
     </div>
+    <div className="education-diploma">
+      <img src="/diploma.png" alt="Diploma" loading="lazy" />
+    </div>
   </section>
 );
 

@@ -19,6 +19,9 @@ const Card = ({ section, isActive, onOpen }: CardProps) => {
         <span className="card-title">{section.title}</span>
       </div>
       <p className="card-short">{section.short}</p>
+      <span className="card-affordance" aria-hidden="true">
+        <span className="card-affordance-icon">›</span>
+      </span>
     </button>
   );
 };

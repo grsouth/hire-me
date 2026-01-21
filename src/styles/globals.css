@@ -223,6 +223,7 @@ a {
   cursor: pointer;
   transition: all 0.2s ease;
   color: var(--text);
+  position: relative;
 }
 
 .resume-card:hover,
@@ -260,6 +261,39 @@ a {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.5;
+}
+
+.card-affordance {
+  position: absolute;
+  right: 16px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.card-affordance-icon {
+  font-size: 20px;
+  line-height: 1;
+  transform: translateX(1px);
+}
+
+.resume-card:not(.is-active) .card-affordance {
+  animation: affordancePulse 8s ease-in-out 0.8s infinite;
+}
+
+@keyframes affordancePulse {
+  0%,
+  82%,
+  100% {
+    transform: translateY(0);
+    color: var(--muted);
+  }
+  90% {
+    transform: translateY(-2px);
+    color: #e2e8f0;
+  }
 }
 
 .expanded-overlay {
@@ -483,6 +517,22 @@ a {
 .experience-head h4 {
   margin: 2px 0 0;
   font-size: 17px;
+}
+
+.education-diploma {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.education-diploma img {
+  width: min(560px, 100%);
+  height: auto;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: #0f172a;
+  box-shadow: 0 12px 30px -24px rgba(0, 0, 0, 0.7);
+  display: block;
 }
 
 .experience-dates {
