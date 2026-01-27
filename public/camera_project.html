@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Self Hosted Security Cameras</title>
+    <style>
+      @import url("https://fonts.bunny.net/css?family=space-grotesk:400,500,600,700");
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, #0d1426, #0a0f1d 70%);
+        color: #e5e7eb;
+        font-family: "Space Grotesk", "Fantasque Sans Mono", "Inter", system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 880px;
+        margin: 0 auto;
+        padding: 48px 20px 84px;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 11px;
+        color: #94a3b8;
+        font-weight: 700;
+        margin: 0 0 12px;
+      }
+      h1 {
+        margin: 0 0 16px;
+        font-size: clamp(36px, 6vw, 54px);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: #f7d3da;
+      }
+      .lede {
+        margin: 0 0 22px;
+        font-size: 19px;
+        line-height: 1.7;
+        color: #cbd5e1;
+      }
+      .md-content {
+        margin-top: 28px;
+        padding: 26px 28px;
+        border-radius: 18px;
+        border: 1px solid rgba(39, 52, 73, 0.9);
+        background:
+          radial-gradient(circle at top left, rgba(140, 59, 74, 0.08), transparent 45%),
+          rgba(15, 23, 42, 0.72);
+      }
+      .md-content h2,
+      .md-content h3,
+      .md-content h4 {
+        margin: 22px 0 10px;
+        color: #f3e7ea;
+      }
+      .md-content h2 {
+        margin-top: 34px;
+        padding-top: 18px;
+        font-size: 24px;
+        font-weight: 800;
+        color: #f7d3da;
+        border-top: 1px solid rgba(140, 59, 74, 0.25);
+      }
+      .md-content h2:first-of-type {
+        margin-top: 8px;
+        padding-top: 0;
+        border-top: none;
+      }
+      .md-content h3 {
+        margin-top: 26px;
+        font-size: 19px;
+        font-weight: 800;
+        color: #f2b6c4;
+      }
+      .md-content h4 {
+        margin-top: 20px;
+        font-size: 16px;
+        color: #f1a3b4;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      .md-content p {
+        margin: 0 0 16px;
+        line-height: 1.8;
+        color: #d6deea;
+      }
+      .md-content p:first-of-type {
+        font-size: 18px;
+        color: #e5e7eb;
+      }
+      .md-content a {
+        color: #f2d7dc;
+        text-decoration: underline;
+        text-decoration-color: rgba(140, 59, 74, 0.55);
+      }
+      .md-content img {
+        display: block;
+        width: min(100%, 760px);
+        height: auto;
+        margin: 22px auto;
+        border-radius: 14px;
+        border: 1px solid rgba(39, 52, 73, 0.9);
+        box-shadow: 0 22px 50px -34px rgba(0, 0, 0, 0.85);
+      }
+      .md-content h4 img,
+      .md-content h5 img {
+        display: inline-block;
+        width: auto;
+        height: 30px;
+        margin: 0 6px 0 0;
+        border: none;
+        box-shadow: none;
+        border-radius: 4px;
+        padding: 0;
+        background: transparent;
+        vertical-align: middle;
+      }
+      @media (min-width: 900px) {
+        .md-content {
+          padding: 34px 42px;
+        }
+        .md-content p {
+          font-size: 17px;
+        }
+      }
+      .md-content del {
+        color: #94a3b8;
+      }
+      .link {
+        display: inline-flex;
+        margin-top: 26px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(140, 59, 74, 0.55);
+        color: #f2d7dc;
+        text-decoration: none;
+        background: rgba(140, 59, 74, 0.3);
+      }
+      .error {
+        margin-top: 18px;
+        color: #fca5a5;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">Personal project log</p>
+      <h1>Self Hosted Security Cameras</h1>
+      <section class="md-content" id="md-content"></section>
+      <a class="link" href="/">Back to the main page</a>
+    </main>
+
+    <script>
+      const content = document.getElementById("md-content");
+
+      const escapeHtml = (value) =>
+        value
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+
+      const renderInline = (value) => {
+        let text = escapeHtml(value);
+        text = text.replace(/!\[([^\]]*)]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
+        text = text.replace(/\[([^\]]+)]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+        text = text.replace(/~~([^~]+)~~/g, "<del>$1</del>");
+        text = text.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+        return text;
+      };
+
+      const buildHtml = (markdown) => {
+        const lines = markdown.split(/\r?\n/);
+        const blocks = [];
+        let paragraph = [];
+
+        const flushParagraph = () => {
+          if (!paragraph.length) return;
+          blocks.push(`<p>${renderInline(paragraph.join(" "))}</p>`);
+          paragraph = [];
+        };
+
+        lines.forEach((line) => {
+          const headingMatch = line.match(/^(#{1,4})\s+(.*)$/);
+          if (headingMatch) {
+            flushParagraph();
+            const level = headingMatch[1].length + 1;
+            const text = renderInline(headingMatch[2]);
+            blocks.push(`<h${level}>${text}</h${level}>`);
+            return;
+          }
+
+          if (!line.trim()) {
+            flushParagraph();
+            return;
+          }
+
+          paragraph.push(line.trim());
+        });
+
+        flushParagraph();
+        return blocks.join("\n");
+      };
+
+      fetch("/camera_project.md")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to load markdown");
+          }
+          return response.text();
+        })
+        .then((markdown) => {
+          content.innerHTML = buildHtml(markdown);
+        })
+        .catch(() => {
+          content.innerHTML = "";
+          const error = document.createElement("p");
+          error.className = "error";
+          error.textContent = "Unable to load camera_project.md.";
+          content.appendChild(error);
+        });
+    </script>
+  </body>
+</html>

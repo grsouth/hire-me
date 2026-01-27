@@ -3,6 +3,7 @@ import Header from "./components/Layout/Header";
 import SectionGrid from "./components/Layout/SectionGrid";
 import Expanded from "./components/ResumeSection/Expanded";
 import DwasmModal from "./components/DwasmModal";
+import BlogFeature from "./components/BlogFeature";
 import { resumeData, ResumeSectionId } from "./data/resume";
 
 function App() {
@@ -43,6 +44,8 @@ function App() {
         activeId={activeId}
         onActivate={(id) => setActiveId(id)}
       />
+
+      <BlogFeature />
 
       <Expanded section={activeSection} onClose={() => setActiveId(null)} />
 

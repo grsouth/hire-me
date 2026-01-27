@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Log: Gecko Mister</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, #0d1426, #0a0f1d 70%);
+        color: #e5e7eb;
+        font-family: "Fantasque Sans Mono", "Courier New", ui-monospace, SFMono-Regular, monospace;
+        -webkit-font-smoothing: antialiased;
+      }
+      .page {
+        max-width: 820px;
+        margin: 0 auto;
+        padding: 48px 20px 80px;
+      }
+      .eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-size: 11px;
+        color: #94a3b8;
+        font-weight: 700;
+        margin: 0 0 10px;
+      }
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(32px, 5vw, 44px);
+      }
+      .lede {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #cbd5e1;
+      }
+      .card {
+        margin-top: 28px;
+        padding: 20px 22px;
+        border-radius: 16px;
+        border: 1px solid rgba(39, 52, 73, 0.9);
+        background: rgba(15, 23, 42, 0.7);
+      }
+      .card h2 {
+        margin: 0 0 12px;
+        font-size: 20px;
+      }
+      .card p {
+        margin: 0 0 10px;
+        line-height: 1.6;
+      }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 16px;
+        font-size: 13px;
+        color: #94a3b8;
+      }
+      .link {
+        display: inline-flex;
+        margin-top: 24px;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(140, 59, 74, 0.55);
+        color: #f2d7dc;
+        text-decoration: none;
+        background: rgba(140, 59, 74, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <p class="eyebrow">Project log</p>
+      <h1>Building a humidity-controlled gecko misting system</h1>
+      <p class="lede">
+        This project started as a simple goal: keep a gecko enclosure consistently
+        humid without manual spraying. It evolved into a small automation system
+        that reads a DHT22 sensor, controls a 12V pump, and logs humidity over time
+        for tuning.
+      </p>
+
+      <div class="meta">
+        <span>Hardware: Arduino Nano, DHT22, 12V pump</span>
+        <span>Fabrication: 3D-printed mounts + tubing clips</span>
+        <span>Focus: safe automation and reliability</span>
+      </div>
+
+      <section class="card">
+        <h2>What I built</h2>
+        <p>
+          The controller reads humidity every few seconds and opens a relay when
+          the enclosure dips below a target range. A rolling average prevents
+          rapid cycling, and a minimum cooldown keeps the pump healthy.
+        </p>
+        <p>
+          The plumbing mounts are printed in PETG, and the tubing route keeps
+          mist away from electronics. A small status LED provides at-a-glance
+          feedback during maintenance.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>What I learned</h2>
+        <p>
+          Sensor placement was critical. Moving the DHT22 away from the mist
+          nozzle and adding a mesh guard made the readings far more stable.
+        </p>
+        <p>
+          The logging step was a bonus: by capturing humidity curves, I could
+          tune the trigger range to balance the reptile's needs and water usage.
+        </p>
+      </section>
+
+      <a class="link" href="/">Back to the main page</a>
+    </main>
+  </body>
+</html>
