@@ -28,7 +28,7 @@ I had previously been using a few Wyze cameras around my apartment, along with t
 
 #### The video footage isn’t local, and it isn’t owned by me.
 
-I don't have any particular evidence that Wyze is doing anything nefarious with the footage of my front porch. Although, I think a certain kind of paranoid person (like me) appreciates the satisfaction that comes with understanding and controlling the whole life cycle of the footage, beginning to end.
+I don't have any particular evidence that Wyze is doing anything nefarious with the footage of my front porch. Although, I think a certain kind of ~~paranoid~~ security-minded person appreciates the satisfaction that comes with understanding and controlling the whole life cycle of the footage, beginning to end.
 
 #### I do not want to continue to pay a subscription for things that I can do myself.
 
@@ -56,7 +56,7 @@ Everything runs in Docker containers with persistent storage, which keeps the se
 
 I’m opting for PoE cameras here. One cable for power+data feels attractive to me for simplicity and reliability (I’ve been burned by cheap wifi cameras before.)
 
-Not just any cheap Chinese PoE camera off Amazon will do, I want a *specific* cheap PoE camera that meets my needs. What I specifically want is something that will expose a reliable, H.264 encoded RTSP stream. For that, we turn to the REOLINK RLC-520A. 
+Not just any cheap PoE camera off Amazon will do, I want a *specific* cheap PoE camera that meets my needs. What I specifically want is something that will expose a reliable, H.264 encoded RTSP stream. For that, we turn to the REOLINK RLC-520A. 
 
 They tried very hard to get me to use the REOLINK app, and the REOLINK cloud service, etc. Fortunately, you can go into the advanced network settings, turn on RTSP, and then never open the app again.
 
@@ -115,7 +115,7 @@ Mosquitto is a lightweight MQTT broker that facilitates communication between Fr
 
 Keeping the MQTT broker as a separate service allows for flexibility and scalability. I could have used the built-in MQTT support in Home Assistant, but separating it isn't actually as hard as it may sound. After some simple configuration, everything worked pretty much immediately
 
-### Tailscale
+### Tailscale VPN
 
 I was already using Tailscale for remote access to my home media server, so extending it to this project took almost no effort at all. Running Tailscale on the Docker host gives me secure, private access to Home Assistant and related services without exposing anything to the public internet or messing with port forwarding.
 
