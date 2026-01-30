@@ -1,3 +1,5 @@
+[[video: https://www.youtube.com/embed/8ovIFXcZn_M]]
+
 # Self Hosted Security Cameras
 
 The goal of this project is to migrate to a system of security cameras that are self-hosted, customizable, and private.
@@ -133,6 +135,8 @@ I opted for Fedora Linux, because of other users' success stories with it on Sur
 
 ### Find a link to the source code [here](https://github.com/grsouth/gcamview)
 
+![Tablet running the custom viewer](./tablet_running_app.jpg)
+
 For the tablet, I built a lightweight Linux desktop application for viewing the PoE IP camera streams in real time. The idea was to create a fast, minimal viewer that avoids the overhead of the full browser-based NVR interface, while also providing me more flexibility to customize the UI and behavior.
 
 The app is written in Rust and uses GTK4/libadwaita for the UI and GStreamer for media playback. I didn't initially plan to use Rust, but it was a good fit for the project because of how much support there is for GTK and GStreamer specifically. In the end I'm glad I got to dip my toes into Rust for a practical application like this, it's a very interesting language that I want to learn more about.
@@ -141,16 +145,19 @@ Camera endpoints are defined in a simple config file, to protect the RTSP URLs (
 
 Initially I used playbin elements in GStreamer to handle the RTSP streams, but after trying them out I found that they were simply too slow to start up and too resource intensive for my needs. Instead, refactored to use rtspsrc elements directly, which reduced startup latency significantly and generally made the app feel snappier.
 
-![Tablet running the custom viewer](./tablet_running_app.jpg)
-
 ![Viewer app within the camera feed](./table_app_inception.jpg)
+
+The app includes a module that subscribes to the same MQTT broker used by Frigate and Home Assistant. In this case, when the app recieves an event indicating that a person (as defined by Frigate) has entered a the detection zone, it wakes the screen, switches to the relevant camera views, and plays a TTS notification out loud e.g. "Person in the Driveway".
+
+Getting the TTS to work was a bit of a challenge. Linux has a many different TTS engines available, all coordinated through the Speech Dispatcher service. The low-friction way to get TTS working was to install espeak-ng and use the spd-say command, but the voice quality is pretty robotic. I experimented with installing other engines, but landed on Piper. It is somewhat more involved to set up, but the voice quality is much better.
 
 ## Still To Do
 
-I want to continue customizing the RTSP viewer app. The next step is to have the app also subscribe to MQTT topics from Frigate, so that it can automatically switch views based on detected events. For example, if Frigate detects a person at the front door, the app could automatically switch to that camera view.
+Something I want to experiment with is Frigate's built in capabilities to do facial detection, and LLM summarization of snapshots. These could both be used to make richer notifications for my phone, and better TTS alerts on the tablet. It would be very useful, for example, to have a notification like "Person in blue vest dropped off package", or hear "Mary Kate arrived at the front door".
 
-This could be taken a step further. For example, Frigate allows creation of LLM summaries of detected events that could be read aloud by the app using a text-to-speech engine. "Person detected at front door, package delivered" or whatever.
+I have yet to dive in to many of the notification and automation capabilities of Home Assistant. There is a lot of potential there to create complex automations based on camera events, more than just simple, individual notifications when a person is detected on each camera. I'd like the ability to create grouped notifications, so that multiple camera events (person in driveway, walks past door, comes up the stairs) can be bundled into a single notification.
 
+I want to make performance improvements to the Rust viewer app. Right now it works *alright*, but given the limited resources on the Surface Go, I'm not entirely happy with how quickly the camera streams start up, how quickly they switch, and how fast the TTS notifications play.
 
 
 
