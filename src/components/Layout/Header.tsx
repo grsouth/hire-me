@@ -24,6 +24,14 @@ const Header = ({ data, onPhotoEasterEgg }: HeaderProps) => {
         <p className="hero-contact">
           <a href={`tel:${tel}`}>{data.contact.phone}</a> |{" "}
           <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a>
+          {" | "}
+          <a
+            href="https://www.linkedin.com/in/garrettsoutham/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            linkedin.com/in/garrettsoutham
+          </a>
         </p>
         <div className="header-actions">
           <a
@@ -31,7 +39,7 @@ const Header = ({ data, onPhotoEasterEgg }: HeaderProps) => {
             href={`${import.meta.env.BASE_URL}GarrettSoutham_Resume.pdf`}
             download
           >
-            Download a boring PDF version of my resume
+            Download a PDF of my resume
           </a>
         </div>
 
