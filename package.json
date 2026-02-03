@@ -5,9 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run light-manifest && vite build",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "light-manifest": "node scripts/generate-light-design-manifest.mjs"
   },
   "dependencies": {
     "react": "^18.2.0",

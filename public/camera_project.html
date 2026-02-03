@@ -15,11 +15,51 @@
         color: #e5e7eb;
         font-family: "Space Grotesk", "Fantasque Sans Mono", "Inter", system-ui, sans-serif;
         -webkit-font-smoothing: antialiased;
+        position: relative;
+        min-height: 100vh;
+        overflow-x: hidden;
       }
       .page {
         max-width: 880px;
         margin: 0 auto;
         padding: 48px 20px 84px;
+        position: relative;
+        z-index: 2;
+      }
+      .tilde-bg {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .tilde-bg pre {
+        position: absolute;
+        inset: -15%;
+        font-family: "Fantasque Sans Mono", "Space Mono", ui-monospace, monospace;
+        font-size: 14px;
+        line-height: 14px;
+        letter-spacing: 0.22em;
+        white-space: pre;
+        color: transparent;
+        background: linear-gradient(110deg, rgba(148, 163, 184, 0.12), rgba(56, 189, 248, 0.1), rgba(251, 191, 36, 0.08), rgba(248, 113, 113, 0.06));
+        background-size: 200% 200%;
+        background-position: 0% 50%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-shadow: 0 0 12px rgba(148, 163, 184, 0.12);
+        animation: tide 44s ease-in-out infinite;
+      }
+      @keyframes tide {
+        0% {
+          transform: translate3d(-1.5%, -1%, 0);
+        }
+        50% {
+          transform: translate3d(1.5%, 2%, 0);
+        }
+        100% {
+          transform: translate3d(-1.5%, -1%, 0);
+        }
       }
       .eyebrow {
         text-transform: uppercase;
@@ -141,6 +181,9 @@
         text-decoration: none;
         background: rgba(140, 59, 74, 0.3);
       }
+      .link-top {
+        margin-bottom: 28px;
+      }
       .video-embed {
         position: relative;
         width: min(100%, 760px);
@@ -166,8 +209,11 @@
     </style>
   </head>
   <body>
+    <div class="tilde-bg" aria-hidden="true">
+      <pre id="tilde-layer"></pre>
+    </div>
     <main class="page">
-      <p class="eyebrow">Personal project log</p>
+      <a class="link link-top" href="/">Back to the main page</a>
       <h1>Self Hosted Security Cameras</h1>
       <section class="md-content" id="md-content"></section>
       <a class="link" href="/">Back to the main page</a>
@@ -244,13 +290,54 @@
         .then((markdown) => {
           content.innerHTML = buildHtml(markdown);
         })
-        .catch(() => {
+      .catch(() => {
           content.innerHTML = "";
           const error = document.createElement("p");
           error.className = "error";
           error.textContent = "Unable to load camera_project.md.";
           content.appendChild(error);
         });
+
+      const tildeLayer = document.getElementById("tilde-layer");
+      let tildeCols = 0;
+      let tildeRows = 0;
+
+      const buildTilde = (cols, rows) => {
+        const output = [];
+        const chars = ["~", "~", "~", "~", "~", ".", ",", " "];
+        for (let r = 0; r < rows; r += 1) {
+          const wave = Math.sin((r / rows) * Math.PI * 2);
+          const rowFill = 0.92 - wave * 0.05;
+          let row = "";
+          for (let c = 0; c < cols; c += 1) {
+            row += Math.random() < rowFill
+              ? chars[Math.floor(Math.random() * (chars.length - 1))]
+              : " ";
+          }
+          output.push(row);
+        }
+        return output.join("\n");
+      };
+
+      const refreshTilde = () => {
+        const charWidth = 9;
+        const charHeight = 14;
+        const cols = Math.ceil(window.innerWidth / charWidth) + 16;
+        const rows = Math.ceil(window.innerHeight / charHeight) + 16;
+
+        if (cols !== tildeCols || rows !== tildeRows) {
+          tildeCols = cols;
+          tildeRows = rows;
+        }
+
+        tildeLayer.textContent = buildTilde(tildeCols, tildeRows);
+      };
+
+      refreshTilde();
+      window.addEventListener("resize", () => {
+        window.clearTimeout(window.__tildeResize);
+        window.__tildeResize = window.setTimeout(refreshTilde, 120);
+      });
     </script>
   </body>
 </html>

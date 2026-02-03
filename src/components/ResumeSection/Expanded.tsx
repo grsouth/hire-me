@@ -201,6 +201,11 @@ const ParagraphImage = ({ imageBlock }: { imageBlock: ParagraphWithImageBlock })
             {renderWithBreaks(entry.text)}
           </p>
         )}
+        {entry.link && (
+          <a className="ghost-button paragraph-image-link" href={entry.link.url}>
+            {entry.link.label}
+          </a>
+        )}
       </article>
     ))}
   </section>

@@ -93,6 +93,10 @@ export interface ParagraphImageEntry {
   text: string;
   image: string;
   alt?: string;
+  link?: {
+    label: string;
+    url: string;
+  };
 }
 
 // ---- Actual data ----
@@ -251,6 +255,10 @@ export const resumeData: ResumeData = {
                 "I also love technical theater and lighting design. \n\n I've worked as a technical director and lighting designer as a volunteer for student productions, and as an employee for community theaters. \n\n It's a great way to combine my technical skills with creativity, and practice working with complex systems under pressure. No matter what happens, the show must go on! \n\n My most recent work was as the lighting designer and board operator for Shakespeare Coeur d'Alene's production of Hamlet.",
               image: `${import.meta.env.BASE_URL}cda_board.jpg`,
               alt: "Lighting console during a show",
+              link: {
+                label: "View lighting design portfolio",
+                url: "/light_design.html",
+              },
             },
             {
               text:
