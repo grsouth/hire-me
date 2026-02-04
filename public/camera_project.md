@@ -1,4 +1,4 @@
-[[video: https://youtu.be/rhc1pMUq7pM]]
+[[video: https://www.youtube.com/embed/rhc1pMUq7pM]]
 
 # Self Hosted Security Cameras
 
@@ -158,5 +158,4 @@ Something I want to experiment with is Frigate's built in capabilities to do fac
 I have yet to dive in to many of the notification and automation capabilities of Home Assistant. There is a lot of potential there to create complex automations based on camera events, more than just simple, individual notifications when a person is detected on each camera. I'd like the ability to create grouped notifications, so that multiple camera events (person in driveway, walks past door, comes up the stairs) can be bundled into a single notification.
 
 I want to make performance improvements to the Rust viewer app. Right now it works *alright*, but given the limited resources on the Surface Go, I'm not entirely happy with how quickly the camera streams start up, how quickly they switch, and how fast the TTS notifications play.
-
 
