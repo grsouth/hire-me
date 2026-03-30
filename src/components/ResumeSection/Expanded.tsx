@@ -4,6 +4,7 @@ import {
   ExperienceBlock,
   ListBlock,
   ParagraphBlock,
+  TitledParagraphBlock,
   ParagraphWithImageBlock,
   ResumeSection,
 } from "../../data/resume";

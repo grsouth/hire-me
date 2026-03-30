@@ -21,16 +21,36 @@ function App() {
     let rows = 0;
     let grid = new Uint8Array(0);
     let nextGrid = new Uint8Array(0);
+    let drawIndices = new Uint32Array(0);
+    let drawCount = 0;
     let lastStep = 0;
+    let lastFrame = 0;
     let lastTransition = 0;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const cellSize = 8;
-    const stepInterval = 820;
-    const dotRadius = 1.75;
+    const hardwareThreads = navigator.hardwareConcurrency || 4;
+    const memoryGb = (navigator as Navigator & { deviceMemory?: number }).deviceMemory || 4;
+    const lowPowerDevice = hardwareThreads <= 4 || memoryGb <= 4;
+    const cellSize = lowPowerDevice ? 11 : 9;
+    const stepInterval = lowPowerDevice ? 950 : 860;
+    const frameInterval = 1000 / (lowPowerDevice ? 10 : 18);
+    const dotSize = lowPowerDevice ? 2.2 : 2.6;
     const fadeDuration = stepInterval;
 
     const index = (x: number, y: number) => y * cols + x;
+
+    const rebuildDrawList = () => {
+      if (drawIndices.length < grid.length) {
+        drawIndices = new Uint32Array(grid.length);
+      }
+      drawCount = 0;
+      for (let i = 0; i < grid.length; i += 1) {
+        if (grid[i] || nextGrid[i]) {
+          drawIndices[drawCount] = i;
+          drawCount += 1;
+        }
+      }
+    };
 
     const seed = () => {
       const density = 0.32;
@@ -40,7 +60,7 @@ function App() {
     };
 
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const dpr = Math.min(window.devicePixelRatio || 1, lowPowerDevice ? 1 : 1.35);
       const width = window.innerWidth;
       const height = window.innerHeight;
       canvas.width = Math.floor(width * dpr);
@@ -54,6 +74,7 @@ function App() {
       grid = new Uint8Array(cols * rows);
       nextGrid = new Uint8Array(cols * rows);
       seed();
+      rebuildDrawList();
     };
 
     const step = () => {
@@ -79,35 +100,36 @@ function App() {
       const swap = grid;
       grid = nextGrid;
       nextGrid = swap;
+      rebuildDrawList();
     };
 
-    const draw = (time: number) => {
+    const draw = (time: number = performance.now()) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const progress = Math.min(1, (time - lastTransition) / fadeDuration);
       const fadeIn = Math.max(0, Math.min(1, progress));
       const fadeOut = 1 - fadeIn;
-      ctx.shadowColor = "rgba(148, 163, 184, 0.18)";
-      ctx.shadowBlur = 6;
-      for (let y = 0; y < rows; y += 1) {
-        for (let x = 0; x < cols; x += 1) {
-          const cx = x * cellSize + cellSize * 0.5;
-          const cy = y * cellSize + cellSize * 0.5;
-          const alive = grid[index(x, y)] === 1;
-          const wasAlive = nextGrid[index(x, y)] === 1;
-          if (alive || wasAlive) {
-            const alpha = (alive ? fadeIn : 0) + (wasAlive ? fadeOut : 0);
-            if (alpha <= 0) continue;
-            ctx.fillStyle = `rgba(148, 163, 184, ${0.23 * alpha})`;
-            ctx.beginPath();
-            ctx.arc(cx, cy, dotRadius, 0, Math.PI * 2);
-            ctx.fill();
-          }
-        }
+      for (let i = 0; i < drawCount; i += 1) {
+        const cell = drawIndices[i];
+        const x = cell % cols;
+        const y = Math.floor(cell / cols);
+        const cx = x * cellSize + cellSize * 0.5;
+        const cy = y * cellSize + cellSize * 0.5;
+        const alive = grid[cell] === 1;
+        const wasAlive = nextGrid[cell] === 1;
+        const alpha = (alive ? fadeIn : 0) + (wasAlive ? fadeOut : 0);
+        if (alpha <= 0) continue;
+        ctx.fillStyle = `rgba(148, 163, 184, ${0.23 * alpha})`;
+        ctx.fillRect(cx - dotSize * 0.5, cy - dotSize * 0.5, dotSize, dotSize);
       }
-      ctx.shadowBlur = 0;
     };
 
     const animate = (time: number) => {
+      if (time - lastFrame < frameInterval) {
+        rafId = window.requestAnimationFrame(animate);
+        return;
+      }
+      lastFrame = time;
+
       if (time - lastStep >= stepInterval) {
         lastTransition = time;
         step();
@@ -117,13 +139,22 @@ function App() {
       rafId = window.requestAnimationFrame(animate);
     };
 
+    const startAnimation = () => {
+      if (prefersReducedMotion || document.hidden || rafId) return;
+      rafId = window.requestAnimationFrame(animate);
+    };
+
+    const stopAnimation = () => {
+      if (!rafId) return;
+      window.cancelAnimationFrame(rafId);
+      rafId = undefined;
+    };
+
     resize();
     lastTransition = performance.now();
     draw(lastTransition);
 
-    if (!prefersReducedMotion) {
-      rafId = window.requestAnimationFrame(animate);
-    }
+    startAnimation();
 
     const handleResize = () => {
       if (resizeTimer) {
@@ -135,15 +166,25 @@ function App() {
       }, 140);
     };
 
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stopAnimation();
+        return;
+      }
+      lastFrame = 0;
+      draw();
+      startAnimation();
+    };
+
     window.addEventListener("resize", handleResize);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
     return () => {
       window.removeEventListener("resize", handleResize);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       if (resizeTimer) {
         window.clearTimeout(resizeTimer);
       }
-      if (rafId) {
-        window.cancelAnimationFrame(rafId);
-      }
+      stopAnimation();
     };
   }, []);
 
