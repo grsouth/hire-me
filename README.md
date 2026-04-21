@@ -17,12 +17,19 @@ npm run build
 
 ## Deployment
 
-The simplest deployment path is already wired up:
+The GitHub Pages deployment path is already wired up:
 
 1. Push to `main`.
 2. GitHub Actions builds the site.
 3. GitHub Pages publishes the contents of `dist/`.
-4. The custom domain is supplied by `CNAME`.
+4. The custom domain, `resume.garrettsoutham.com`, is configured in the
+   repository's GitHub Pages settings.
+
+The repo should use GitHub Pages' `GitHub Actions` publishing source. When a
+custom Actions workflow publishes Pages, GitHub ignores a checked-in root
+`CNAME` file, so the domain must be kept in the repository Pages settings.
+DNS for `resume.garrettsoutham.com` should point at `grsouth.github.io` with a
+`CNAME` record.
 
 If you want a local preflight build, run:
 
