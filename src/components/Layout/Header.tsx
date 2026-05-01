@@ -18,7 +18,7 @@ const Header = ({ data }: HeaderProps) => {
     <header className="site-header">
       <div className="header-text">
         <h1 className="hero-name">{data.name}</h1>
-        <p className="hero-headline">{data.headline}</p>
+        {data.headline && <p className="hero-headline">{data.headline}</p>}
         <p className="hero-contact">
           <a href={`tel:${tel}`}>{data.contact.phone}</a> |{" "}
           <a href={`mailto:${data.contact.email}`}>{data.contact.email}</a>

@@ -103,7 +103,7 @@ export interface ParagraphImageEntry {
 
 export const resumeData: ResumeData = {
   name: "Garrett Southam",
-  headline: "Software Engineer",
+  headline: "",
   contact: {
     phone: "(801) 372-4562",
     email: "mail@garrettsoutham.com",
@@ -112,7 +112,7 @@ export const resumeData: ResumeData = {
   links: [],
 
   summary: {
-    short: "I love using technical skills to build useful things.",
+    short: "I love using my technical skills to build and maintain useful things.",
     details: [
       {
         type: "paragraph",
@@ -140,25 +140,25 @@ export const resumeData: ResumeData = {
       id: "skills",
       title: "Skills",
       icon: "🛠",
-      short: "Proficient in modern object-oriented programming and software development tools, with experience in data analysis, automation, and SDET/QA.",
+      short: "Experience across programming, Linux systems, automation, testing, data analysis, troubleshooting, and hardware/software support.",
       details: [
         {
           type: "paragraphTitled",
           title: "Languages",
           text:
-            "I have the most experience working in C, C++, C#, Java, and Python. I've also done some work in JavaScript/TypeScript, SQL, HTML/CSS, and Bash scripting. \n\n I'm excited to pick up new languages as needed, and have a solid foundation in core programming concepts.",
+            "I have experience with C, C++, C#, Java, Python, SQL, Bash, JavaScript/TypeScript, and HTML/CSS. I've used programming for automation, data analysis, testing, troubleshooting, and internal tooling, and I'm comfortable learning new languages or platforms as needed.",
         },
         {
           type: "paragraphTitled",
-          title: "Frameworks & Tools",
+          title: "Frameworks, Systems & Tools",
           text:
-            "I have a real passion for Linux, which I use at home, for my personal projects, and whenever I can. At work though, I've gained experience working with Windows-based stacks, including .NET applications, SQL Server databases, and Azure DevOps pipelines. \n\n I'm comfortable working with Git for version control, and have worked on the basics of CI/CD. \n\n I have experience with test frameworks like JUnit, NUnit and Playwright. \n\n For data analysis and automation, I've worked with Pandas, NumPy, and Matplotlib in Python, not to mention Excel and VBA macros.",
+            "Professionally, I've worked with Windows-based stacks including .NET applications, SQL Server databases, Azure DevOps pipelines, automated testing, and agile development workflows. I also use Linux extensively for development and personal infrastructure, including Docker Compose, systemd services, SSH, Git, shell scripting, logs, networking, and secure remote access tools. \n\n My personal technical projects have included self-hosted network services, camera/NVR systems, MQTT-based automation, RTSP video streams, Home Assistant, and media-server tooling. These projects have given me practical experience troubleshooting networked devices, service reliability, configuration issues, logs, and hardware/software interactions. \n\n I have experience with JUnit, NUnit, Playwright, Pandas, NumPy, Matplotlib, Excel, and VBA macros.",
         },
         {
           type: "paragraphTitled",
-          title: "Other / Soft Skills",
+          title: "Other Skills",
           text:
-            "I've worked in agile teams, learning Scrum methodologies. I've had a lot of experience communicating technical concepts to non-technical stakeholders and working across teams to solve problems. \n\n I speak Russian at a conversational level. \n\n I'm a quick learner, and I love getting involved in new challenges that let me stretch my skills and use new tools.   ",
+            "I've worked closely with software, QA, and hardware teams, and I'm comfortable communicating technical issues across disciplines. Much of my experience has involved investigating unclear problems, documenting findings, coordinating with others, and finding practical solutions. I'm especially interested in roles that combine systems, hardware, software, networking, and user support. \n\n I speak Russian at a conversational level.",
         },
       ],
     },
@@ -166,7 +166,7 @@ export const resumeData: ResumeData = {
     // EXPERIENCE
     {
       id: "experience",
-      title: "Job Experience",
+      title: "Experience",
       icon: "💼",
       short: "Engineering Assistant with experience in hardware, QA, and software development.",
       details: [
@@ -230,9 +230,9 @@ export const resumeData: ResumeData = {
               graduation: "Dec 2025",
               logo: `${import.meta.env.BASE_URL}byu_logo_square.png`,
               details: [
-                "Pursuing my Computer Science degree gave me a lot of hands-on work in C, C++, Java, and Python. There was a strong emphasis on understanding core computer science principles, like algorithms and data structures.",
-                "My main classes were a deep dive into discrete math, web programming, computer systems (C/x86), databases, and computational theory. I got a lot of experience writing object-oriented code, practicing test-driven development, and working on larger projects.",
-                "I had supporting calculus and physics coursework. Also noteworthy was some great elective experiences, including Blockchain development, computer security, mechanical engineering, and business ethics.",
+                "Relevant coursework included Linux Systems Programming, C/x86, Data Structures, Web Programming, Databases/SQL, Java, C++, Python, Computer Systems, Discrete Mathematics, and Physics.",
+                "My degree gave me hands-on experience writing object-oriented code, working with larger software projects, practicing test-driven development, and building a strong foundation in core computer science principles.",
+                "Additional coursework and electives included computational theory, computer security, blockchain development, mechanical engineering, calculus, and business ethics.",
               ],
             },
           ],
@@ -262,13 +262,13 @@ export const resumeData: ResumeData = {
             },
             {
               text:
-                "When I have extra time at home, I'm probably working on some kind of maker project. \n\n I love tinkering with 3D printers. I've been surprised how many skills you can develop just by working on personal projects and learning to solve everyday problems on your own in novel ways. \n\n Whether it's designing custom parts in CAD, tuning print settings, learning to solder, or writing Arduino code, you can learn a lot just by diving into a project and figuring it out as you go. \n\n Some of my recent projects have included an automatic humidity-controlled gecko misting system, custom trigger linkages for bufferless rifle receivers, and a whole variety of organization and workshop improvement projects.",
+                "When I have extra time at home, I'm often working on maker or homelab projects. I enjoy 3D printing because it turns small everyday problems into design, troubleshooting, and iteration exercises. \n\n I've designed custom parts in CAD, tuned print settings, repaired equipment, soldered electronics, and written small bits of Arduino code for personal projects. \n\n I also maintain a small homelab with self-hosted services, Docker Compose stacks, media-server tooling, Home Assistant experiments, camera/NVR projects, MQTT automation, and secure remote access. Those projects have given me practical experience with logs, configuration, networking, service reliability, and hardware/software troubleshooting.",
               image: `${import.meta.env.BASE_URL}3d_printer.jpg`,
               alt: "3D printer working on a part",
             },
             {
               text:
-                "The rest of my time tends to revolve around family, including my wife, our new baby daughter, and our puppy. \n\n That isn't really relevant to my employability, but I do get to show you a picture of my dog.",
+                "A lot of the work I'm proudest of has come from being patient with people while we sort through unclear technical problems together. I like translating technical details into plain language, asking careful questions, documenting what I learn, and helping teams stay calm when something is broken or ambiguous. \n\n Outside of work and projects, most of my time revolves around family, including my wife, our daughter, and our dog (pictured above)",
               image: `${import.meta.env.BASE_URL}fitzy.jpg`,
               alt: "My puppy",
             },
