@@ -4,23 +4,23 @@
 
 The goal of this project is to migrate to a system of security cameras that are self-hosted, customizable, and private.
 
-![Frigate NVR dashboard](./frigate_nvr.png)
+![Frigate NVR dashboard](./images/frigate_nvr.png)
 
 ## Skills Developed 
 
-#### ![Docker logo](./logos/docker.svg) Docker
+#### ![Docker logo](/assets/logos/docker.svg) Docker
 I got practice using docker compose to set up and deploy several different services. I learned about the importance of persistent volumes for data storage, and how to configure services to communicate with each other over a docker network. 
 
-#### ![MQTT logo](./logos/mqtt.svg) MQTT
+#### ![MQTT logo](/assets/logos/mqtt.svg) MQTT
 In setting up an MQTT broker and making it accessible to other services, I gained some better understanding about pub/sub architectures, and how MQTT can be used to facilitate communication from IoT devices. I got some practice with how asynchronous event handling works in this kind of architecture. 
 
-#### ![go2rtc logo](./logos/go2rtc.png) RTSP, go2rtc and IP video
+#### ![go2rtc logo](/assets/logos/go2rtc.png) RTSP, go2rtc and IP video
 I learned about the RTSP protocol for streaming video over a network, and how to configure IP cameras to stream their footage to a local server. I better understand H.264/H.265 video encoding, and how to use go2rtc to transcode and relay video streams. 
 
-#### ![OpenCV logo](./logos/opencv.svg) Computer Vision
+#### ![OpenCV logo](/assets/logos/opencv.svg) Computer Vision
 In setting up and configuring the Frigate NVR software, I learned about some different computer vision models (mobile net, yolov5, etc.) and how they can be used for object detection in video streams.
 
-#### ![GTK logo](./logos/gtk.svg) Rust and GTK4
+#### ![GTK logo](/assets/logos/gtk.svg) Rust and GTK4
 I got some practice building a GUI application in Rust using the GTK4 library. I learned about the basics of GTK application structure, event handling, and layout management. I also got experience with Rust as a systems programming language.
 
 
@@ -40,7 +40,7 @@ In this case, advanced object detection. To get specific detection and alerts fo
 
 I want more flexibility in exactly how and where I’m notified about camera events. Wyze doesn’t let you define any automation logic about its predefined behaviors, let alone giving you granular control over things like detection models, cooldowns, thresholds, confidence scores, etc.
 
-![Camera system pipeline flowchart](./pipeline_flowchart.png)
+![Camera system pipeline flowchart](./images/pipeline_flowchart.png)
 
 ## System Overview
 At a high level, the system is a handful of self-hosted services that work together to handle video, events, and notifications. PoE cameras stream H.264 video over RTSP to a central server, where Frigate acts as the NVR and runs object detection on the incoming feeds.
@@ -64,7 +64,7 @@ They tried very hard to get me to use the REOLINK app, and the REOLINK cloud ser
 
 A simple PoE switch will do here, like the TP-Link TL-SF1005P, an old standby, and also on sale. I had some cat6 cable around already.
 
-![Reolink RLC-520A camera](./reolink_cam.jpg)
+![Reolink RLC-520A camera](./images/reolink_cam.jpg)
 
 
 ### Server
@@ -73,7 +73,7 @@ The NVR and Home Assistant will live on my existing home server, a Debian box us
 
 When I originally found Frigate NVR, it was mostly centered around using the Coral TPU for hardware acceleration of the tensorflow lite models. However, Google has mostly given up on whole the Coral project. Not only are the TPUs hard to find now, but firmware support is spotty and only maintained by the community at this point. Probably best to not hop on that sinking ship. I only plan on three cameras, so the Intel iGPU is more than enough for my needs.
 
-![Home server hardware](./home_server.jpg)
+![Home server hardware](./images/home_server.jpg)
 
 ### External Viewer
 
@@ -83,7 +83,7 @@ My initial plan revolved around using a Raspberry Pi and a touch display, and th
 
 These are dirt cheap on Ebay, on account of them being fairly underpowered by modern standards. Just fine for my application though. And, despite its pedigree, you can ~~easily~~ install Linux on these. The Surface hardware specifically has an active online community of Linux users, even going so far as to keep an updated Surface-specific kernel to maximize compatibility. 
 
-![Surface Go running Fedora](./fedora_tablet.jpg)
+![Surface Go running Fedora](./images/fedora_tablet.jpg)
 
 ## Configuration
 
@@ -103,7 +103,7 @@ Frigate is free and open source, a good alternative to proprietary NVR software 
 
 Setting up Frigate involved configuring the cameras as RTSP inputs, defining detection zones, and setting up notification rules. I opted to use the MobileNet model for general object detection, as it provides a good balance between accuracy and performance on my hardware.
 
-![Frigate configuration](./frigate_config.png)
+![Frigate configuration](./images/frigate_config.png)
 
 ### Home Assistant
 
@@ -135,7 +135,7 @@ I opted for Fedora Linux, because of other users' success stories with it on Sur
 
 ### Find a link to the source code [here](https://github.com/grsouth/gcamview)
 
-![Tablet running the custom viewer](./tablet_running_app.jpg)
+![Tablet running the custom viewer](./images/tablet_running_app.jpg)
 
 For the tablet, I built a lightweight Linux desktop application for viewing the PoE IP camera streams in real time. The idea was to create a fast, minimal viewer that avoids the overhead of the full browser-based NVR interface, while also providing me more flexibility to customize the UI and behavior.
 
@@ -145,7 +145,7 @@ Camera endpoints are defined in a simple config file, to protect the RTSP URLs (
 
 Initially I used playbin elements in GStreamer to handle the RTSP streams, but after trying them out I found that they were simply too slow to start up and too resource intensive for my needs. Instead, refactored to use rtspsrc elements directly, which reduced startup latency significantly and generally made the app feel snappier.
 
-![Viewer app within the camera feed](./table_app_inception.jpg)
+![Viewer app within the camera feed](./images/table_app_inception.jpg)
 
 The app includes a module that subscribes to the same MQTT broker used by Frigate and Home Assistant. In this case, when the app recieves an event indicating that a person (as defined by Frigate) has entered a the detection zone, it wakes the screen, switches to the relevant camera views, and plays a TTS notification out loud e.g. "Person in the Driveway".
 
@@ -158,4 +158,3 @@ Something I want to experiment with is Frigate's built in capabilities to do fac
 I have yet to dive in to many of the notification and automation capabilities of Home Assistant. There is a lot of potential there to create complex automations based on camera events, more than just simple, individual notifications when a person is detected on each camera. I'd like the ability to create grouped notifications, so that multiple camera events (person in driveway, walks past door, comes up the stairs) can be bundled into a single notification.
 
 I want to make performance improvements to the Rust viewer app. Right now it works *alright*, but given the limited resources on the Surface Go, I'm not entirely happy with how quickly the camera streams start up, how quickly they switch, and how fast the TTS notifications play.
-

@@ -206,7 +206,7 @@ export const resumeData: ResumeData = {
             {
               text:
                 "",
-              image: `${import.meta.env.BASE_URL}wave_sensor.jpg`,
+              image: `${import.meta.env.BASE_URL}assets/images/resume/wave_sensor.jpg`,
               alt: "Wavetronix sensor mounted outdoors",
             },
           ],
@@ -228,7 +228,7 @@ export const resumeData: ResumeData = {
               school: "Brigham Young University",
               degree: "B.S., Computer Science",
               graduation: "Dec 2025",
-              logo: `${import.meta.env.BASE_URL}byu_logo_square.png`,
+              logo: `${import.meta.env.BASE_URL}assets/images/resume/byu_logo_square.png`,
               details: [
                 "Relevant coursework included Linux Systems Programming, C/x86, Data Structures, Web Programming, Databases/SQL, Java, C++, Python, Computer Systems, Discrete Mathematics, and Physics.",
                 "My degree gave me hands-on experience writing object-oriented code, working with larger software projects, practicing test-driven development, and building a strong foundation in core computer science principles.",
@@ -253,23 +253,23 @@ export const resumeData: ResumeData = {
             {
               text:
                 "I also love technical theater and lighting design. \n\n I've worked as a technical director and lighting designer as a volunteer for student productions, and as an employee for community theaters. \n\n It's a great way to combine my technical skills with creativity, and practice working with complex systems under pressure. No matter what happens, the show must go on! \n\n My most recent work was as the lighting designer and board operator for Shakespeare Coeur d'Alene's production of Hamlet.",
-              image: `${import.meta.env.BASE_URL}cda_board.jpg`,
+              image: `${import.meta.env.BASE_URL}assets/images/resume/cda_board.jpg`,
               alt: "Lighting console during a show",
               link: {
                 label: "View lighting design portfolio",
-                url: "/light_design.html",
+                url: `${import.meta.env.BASE_URL}projects/light-design/index.html`,
               },
             },
             {
               text:
                 "When I have extra time at home, I'm often working on maker or homelab projects. I enjoy 3D printing because it turns small everyday problems into design, troubleshooting, and iteration exercises. \n\n I've designed custom parts in CAD, tuned print settings, repaired equipment, soldered electronics, and written small bits of Arduino code for personal projects. \n\n I also maintain a small homelab with self-hosted services, Docker Compose stacks, media-server tooling, Home Assistant experiments, camera/NVR projects, MQTT automation, and secure remote access. Those projects have given me practical experience with logs, configuration, networking, service reliability, and hardware/software troubleshooting.",
-              image: `${import.meta.env.BASE_URL}3d_printer.jpg`,
+              image: `${import.meta.env.BASE_URL}assets/images/resume/3d_printer.jpg`,
               alt: "3D printer working on a part",
             },
             {
               text:
                 "A lot of the work I'm proudest of has come from being patient with people while we sort through unclear technical problems together. I like translating technical details into plain language, asking careful questions, documenting what I learn, and helping teams stay calm when something is broken or ambiguous. \n\n Outside of work and projects, most of my time revolves around family, including my wife, our daughter, and our dog (pictured above)",
-              image: `${import.meta.env.BASE_URL}fitzy.jpg`,
+              image: `${import.meta.env.BASE_URL}assets/images/resume/fitzy.jpg`,
               alt: "My puppy",
             },
           ],

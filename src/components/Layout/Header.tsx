@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ResumeData } from "../../data/resume";
 
 type HeaderProps = {
@@ -6,13 +5,8 @@ type HeaderProps = {
 };
 
 const Header = ({ data }: HeaderProps) => {
-  const [isSpinning, setIsSpinning] = useState(false);
   const tel = data.contact.phone.replace(/[^\d+]/g, "");
-  const photoUrl = `${import.meta.env.BASE_URL}profilepic_dark.png`;
-
-  const handlePhotoClick = () => {
-    setIsSpinning(true);
-  };
+  const photoUrl = `${import.meta.env.BASE_URL}assets/images/profile/profilepic_dark.png`;
 
   return (
     <header className="site-header">
@@ -30,11 +24,15 @@ const Header = ({ data }: HeaderProps) => {
           >
             linkedin.com/in/garrettsoutham
           </a>
+          {" | "}
+          <a href="https://github.com/grsouth" target="_blank" rel="noreferrer">
+            github.com/grsouth
+          </a>
         </p>
         <div className="header-actions">
           <a
             className="ghost-button"
-            href={`${import.meta.env.BASE_URL}GarrettSoutham_Resume.pdf`}
+            href={`${import.meta.env.BASE_URL}assets/documents/GarrettSoutham_Resume.pdf`}
             download
           >
             Download a PDF of my resume
@@ -44,13 +42,7 @@ const Header = ({ data }: HeaderProps) => {
         <p className="summary-inline">{data.summary.short}</p>
       </div>
 
-      <div
-        className={`header-photo ${isSpinning ? "is-spinning" : ""}`}
-        aria-hidden
-        onClick={handlePhotoClick}
-        role="presentation"
-        onAnimationEnd={() => setIsSpinning(false)}
-      >
+      <div className="header-photo" aria-hidden role="presentation">
         <img src={photoUrl} alt="" loading="lazy" />
       </div>
     </header>

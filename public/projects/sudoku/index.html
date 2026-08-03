@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Self Hosted Security Cameras</title>
+    <title>Sudoku Solver Language Comparison</title>
     <style>
       @import url("https://fonts.bunny.net/css?family=space-grotesk:400,500,600,700");
       :root {
@@ -93,7 +93,8 @@
       }
       .md-content h2,
       .md-content h3,
-      .md-content h4 {
+      .md-content h4,
+      .md-content h5 {
         margin: 22px 0 10px;
         color: #f3e7ea;
       }
@@ -116,7 +117,8 @@
         font-weight: 800;
         color: #f2b6c4;
       }
-      .md-content h4 {
+      .md-content h4,
+      .md-content h5 {
         margin-top: 20px;
         font-size: 16px;
         color: #f1a3b4;
@@ -124,14 +126,25 @@
         text-transform: uppercase;
         letter-spacing: 0.08em;
       }
-      .md-content p {
-        margin: 0 0 16px;
+      .md-content p,
+      .md-content li {
         line-height: 1.8;
         color: #d6deea;
+      }
+      .md-content p {
+        margin: 0 0 16px;
       }
       .md-content p:first-of-type {
         font-size: 18px;
         color: #e5e7eb;
+      }
+      .md-content ul,
+      .md-content ol {
+        margin: 0 0 18px;
+        padding-left: 24px;
+      }
+      .md-content li + li {
+        margin-top: 6px;
       }
       .md-content a {
         color: #f2d7dc;
@@ -147,26 +160,52 @@
         border: 1px solid rgba(39, 52, 73, 0.9);
         box-shadow: 0 22px 50px -34px rgba(0, 0, 0, 0.85);
       }
-      .md-content h4 img,
-      .md-content h5 img {
-        display: inline-block;
-        width: auto;
-        height: 30px;
-        margin: 0 6px 0 0;
-        border: none;
-        box-shadow: none;
-        border-radius: 4px;
-        padding: 0;
-        background: transparent;
-        vertical-align: middle;
+      .md-content code {
+        font-family: "Fantasque Sans Mono", "Space Mono", ui-monospace, monospace;
+        font-size: 0.95em;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(39, 52, 73, 0.9);
+        border-radius: 8px;
+        padding: 0.12em 0.4em;
       }
-      @media (min-width: 900px) {
-        .md-content {
-          padding: 34px 42px;
-        }
-        .md-content p {
-          font-size: 17px;
-        }
+      .md-content pre {
+        overflow-x: auto;
+        margin: 18px 0 24px;
+        padding: 16px 18px;
+        border-radius: 14px;
+        border: 1px solid rgba(39, 52, 73, 0.9);
+        background: rgba(8, 12, 24, 0.95);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+      .md-content pre code {
+        display: block;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        border-radius: 0;
+        white-space: pre;
+      }
+      .md-content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 18px 0 26px;
+        overflow: hidden;
+        border-radius: 14px;
+        border: 1px solid rgba(39, 52, 73, 0.9);
+        background: rgba(9, 13, 25, 0.84);
+      }
+      .md-content th,
+      .md-content td {
+        padding: 12px 14px;
+        border-bottom: 1px solid rgba(39, 52, 73, 0.9);
+        text-align: left;
+      }
+      .md-content th {
+        color: #f3e7ea;
+        background: rgba(140, 59, 74, 0.18);
+      }
+      .md-content tr:last-child td {
+        border-bottom: 0;
       }
       .md-content del {
         color: #94a3b8;
@@ -184,43 +223,36 @@
       .link-top {
         margin-bottom: 28px;
       }
-      .video-embed {
-        position: relative;
-        width: min(100%, 760px);
-        margin: 22px auto 30px;
-        aspect-ratio: 16 / 9;
-        border-radius: 16px;
-        overflow: hidden;
-        border: 1px solid rgba(39, 52, 73, 0.9);
-        box-shadow: 0 22px 50px -34px rgba(0, 0, 0, 0.85);
-        background: rgba(15, 23, 42, 0.9);
-      }
-      .video-embed iframe {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-      }
       .error {
         margin-top: 18px;
         color: #fca5a5;
       }
+      @media (min-width: 900px) {
+        .md-content {
+          padding: 34px 42px;
+        }
+        .md-content p,
+        .md-content li,
+        .md-content td,
+        .md-content th {
+          font-size: 17px;
+        }
+      }
     </style>
+    <link rel="stylesheet" href="../project-page.css" />
   </head>
   <body>
-    <div class="tilde-bg" aria-hidden="true">
-      <pre id="tilde-layer"></pre>
-    </div>
     <main class="page">
       <a class="link link-top" href="/">Back to the main page</a>
-      <h1>Self Hosted Security Cameras</h1>
+      <p class="eyebrow">Language comparison notes</p>
+      <h1 id="page-title">Sudoku Solver Language Comparison</h1>
       <section class="md-content" id="md-content"></section>
       <a class="link" href="/">Back to the main page</a>
     </main>
 
     <script>
       const content = document.getElementById("md-content");
+      const pageTitle = document.getElementById("page-title");
 
       const escapeHtml = (value) =>
         value
@@ -228,8 +260,17 @@
           .replace(/</g, "&lt;")
           .replace(/>/g, "&gt;");
 
+      const parseTableCells = (line) =>
+        line
+          .trim()
+          .replace(/^\|/, "")
+          .replace(/\|$/, "")
+          .split("|")
+          .map((cell) => cell.trim());
+
       const renderInline = (value) => {
         let text = escapeHtml(value);
+        text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
         text = text.replace(/!\[([^\]]*)]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" />');
         text = text.replace(/\[([^\]]+)]\(([^)]+)\)/g, '<a href="$2">$1</a>');
         text = text.replace(/~~([^~]+)~~/g, "<del>$1</del>");
@@ -241,6 +282,10 @@
         const lines = markdown.split(/\r?\n/);
         const blocks = [];
         let paragraph = [];
+        let listItems = [];
+        let listType = null;
+        let codeFence = null;
+        let codeLines = [];
 
         const flushParagraph = () => {
           if (!paragraph.length) return;
@@ -248,39 +293,128 @@
           paragraph = [];
         };
 
-        lines.forEach((line) => {
-          const videoMatch = line.match(/^\[\[video:\s*(.+?)\s*]]$/);
-          if (videoMatch) {
+        const flushList = () => {
+          if (!listItems.length || !listType) return;
+          const tag = listType === "ol" ? "ol" : "ul";
+          blocks.push(`<${tag}>${listItems.map((item) => `<li>${renderInline(item)}</li>`).join("")}</${tag}>`);
+          listItems = [];
+          listType = null;
+        };
+
+        const flushCode = () => {
+          if (!codeFence) return;
+          blocks.push(`<pre><code>${escapeHtml(codeLines.join("\n"))}</code></pre>`);
+          codeFence = null;
+          codeLines = [];
+        };
+
+        for (let i = 0; i < lines.length; i += 1) {
+          const line = lines[i];
+
+          if (codeFence) {
+            if (line.trim().startsWith("```")) {
+              flushCode();
+            } else {
+              codeLines.push(line);
+            }
+            continue;
+          }
+
+          if (line.trim().startsWith("```")) {
             flushParagraph();
-            const url = videoMatch[1].trim();
+            flushList();
+            codeFence = line.trim().slice(3).trim() || "text";
+            continue;
+          }
+
+          const tableHeaderCandidate = line.includes("|") ? line : null;
+          const tableDividerCandidate = lines[i + 1] || "";
+          if (
+            tableHeaderCandidate &&
+            /^\s*\|?[\s:-]+(?:\|[\s:-]+)+\|?\s*$/.test(tableDividerCandidate)
+          ) {
+            flushParagraph();
+            flushList();
+
+            const header = parseTableCells(line);
+            const rows = [];
+            i += 2;
+            while (i < lines.length && lines[i].includes("|") && lines[i].trim()) {
+              rows.push(parseTableCells(lines[i]));
+              i += 1;
+            }
+            i -= 1;
+
             blocks.push(
-              `<div class="video-embed"><iframe src="${url}" title="Project demo video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>`
+              `<table><thead><tr>${header.map((cell) => `<th>${renderInline(cell)}</th>`).join("")}</tr></thead><tbody>${rows
+                .map(
+                  (row) =>
+                    `<tr>${row.map((cell) => `<td>${renderInline(cell)}</td>`).join("")}</tr>`
+                )
+                .join("")}</tbody></table>`
             );
-            return;
+            continue;
           }
 
           const headingMatch = line.match(/^(#{1,4})\s+(.*)$/);
           if (headingMatch) {
             flushParagraph();
-            const level = headingMatch[1].length + 1;
-            const text = renderInline(headingMatch[2]);
-            blocks.push(`<h${level}>${text}</h${level}>`);
-            return;
+            flushList();
+            const originalLevel = headingMatch[1].length;
+            const text = headingMatch[2].trim();
+
+            if (originalLevel === 1) {
+              pageTitle.textContent = text;
+              continue;
+            }
+
+            const level = Math.min(originalLevel + 1, 5);
+            blocks.push(`<h${level}>${renderInline(text)}</h${level}>`);
+            continue;
+          }
+
+          const unorderedMatch = line.match(/^\s*-\s+(.*)$/);
+          if (unorderedMatch) {
+            flushParagraph();
+            if (listType && listType !== "ul") {
+              flushList();
+            }
+            listType = "ul";
+            listItems.push(unorderedMatch[1]);
+            continue;
+          }
+
+          const orderedMatch = line.match(/^\s*\d+\.\s+(.*)$/);
+          if (orderedMatch) {
+            flushParagraph();
+            if (listType && listType !== "ol") {
+              flushList();
+            }
+            listType = "ol";
+            listItems.push(orderedMatch[1]);
+            continue;
           }
 
           if (!line.trim()) {
             flushParagraph();
-            return;
+            flushList();
+            continue;
+          }
+
+          if (listType) {
+            flushList();
           }
 
           paragraph.push(line.trim());
-        });
+        }
 
         flushParagraph();
+        flushList();
+        flushCode();
         return blocks.join("\n");
       };
 
-      fetch("/camera_project.md")
+      fetch("./project.md")
         .then((response) => {
           if (!response.ok) {
             throw new Error("Failed to load markdown");
@@ -290,54 +424,14 @@
         .then((markdown) => {
           content.innerHTML = buildHtml(markdown);
         })
-      .catch(() => {
+        .catch(() => {
           content.innerHTML = "";
           const error = document.createElement("p");
           error.className = "error";
-          error.textContent = "Unable to load camera_project.md.";
+          error.textContent = "Unable to load project.md.";
           content.appendChild(error);
         });
 
-      const tildeLayer = document.getElementById("tilde-layer");
-      let tildeCols = 0;
-      let tildeRows = 0;
-
-      const buildTilde = (cols, rows) => {
-        const output = [];
-        const chars = ["~", "~", "~", "~", "~", ".", ",", " "];
-        for (let r = 0; r < rows; r += 1) {
-          const wave = Math.sin((r / rows) * Math.PI * 2);
-          const rowFill = 0.92 - wave * 0.05;
-          let row = "";
-          for (let c = 0; c < cols; c += 1) {
-            row += Math.random() < rowFill
-              ? chars[Math.floor(Math.random() * (chars.length - 1))]
-              : " ";
-          }
-          output.push(row);
-        }
-        return output.join("\n");
-      };
-
-      const refreshTilde = () => {
-        const charWidth = 9;
-        const charHeight = 14;
-        const cols = Math.ceil(window.innerWidth / charWidth) + 16;
-        const rows = Math.ceil(window.innerHeight / charHeight) + 16;
-
-        if (cols !== tildeCols || rows !== tildeRows) {
-          tildeCols = cols;
-          tildeRows = rows;
-        }
-
-        tildeLayer.textContent = buildTilde(tildeCols, tildeRows);
-      };
-
-      refreshTilde();
-      window.addEventListener("resize", () => {
-        window.clearTimeout(window.__tildeResize);
-        window.__tildeResize = window.setTimeout(refreshTilde, 120);
-      });
     </script>
   </body>
 </html>

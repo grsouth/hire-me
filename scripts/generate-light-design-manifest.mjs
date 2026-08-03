@@ -1,7 +1,7 @@
 import { readdir, writeFile } from "node:fs/promises";
 import { extname, join } from "node:path";
 
-const root = new URL("../public/light_design_pics/", import.meta.url);
+const root = new URL("../public/projects/light-design/images/", import.meta.url);
 const dirPath = root.pathname;
 const manifestPath = join(dirPath, "manifest.json");
 const allowed = new Set([".jpg", ".jpeg", ".png", ".webp", ".gif"]);

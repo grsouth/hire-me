@@ -4,16 +4,18 @@ const posts = [
     excerpt:
       "I built a private, customizable camera system that replaced my old cloud subscriptions with a local one. It runs Frigate for detection, Home Assistant for automations, and a Rust viewer for low-latency monitoring on a dedicated tablet.",
     meta: "Frigate, Home Assistant, Mosquitto MQTT, Docker, Linux",
-    href: "/camera_project.html",
-    image: "tablet_running_app.jpg",
+    context: "Home infrastructure case study",
+    href: `${import.meta.env.BASE_URL}projects/camera/index.html`,
+    image: "projects/camera/images/tablet_running_app.jpg",
   },
   {
     title: "Sudoku Solver Benchmarks Across C Alternatives",
     excerpt:
       "I implemented the same Sudoku solver in C, Rust, Go, Zig, and Odin to compare both development experience and raw performance. The post walks through the algorithm, benchmark results, and what each language felt like in practice.",
     meta: "C, Rust, Go, Zig, Odin, Benchmarking",
-    href: "/sudoku_project.html",
-    image: "sudoku/sudoku_pic.png",
+    context: "Language comparison notes",
+    href: `${import.meta.env.BASE_URL}projects/sudoku/index.html`,
+    image: "projects/sudoku/images/sudoku_pic.png",
   },
 ];
 
@@ -27,7 +29,7 @@ const BlogFeature = () => {
           key={post.href}
         >
           <div className="blog-feature__content">
-            <p className="blog-feature__eyebrow">Personal project log</p>
+            <p className="blog-feature__eyebrow">{post.context}</p>
             <h2 className="blog-feature__title" id={`blog-feature-title-${index}`}>
               {post.title}
             </h2>
@@ -37,7 +39,7 @@ const BlogFeature = () => {
             </div>
             <div className="blog-feature__actions">
               <a className="ghost-button" href={post.href}>
-                Read the full post
+                Read project notes
               </a>
             </div>
           </div>

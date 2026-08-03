@@ -107,7 +107,7 @@ available = NINE_BIT_MASK & ~used
 To quickly benchmark the performance of each implementation, I ran each solver on two different puzzles, one easy and one hard. (The hard puzzle has fewer clues, which means the solver has to do more backtracking). Each solver ran the same puzzle a million times.
 
 
-![Easy puzzle benchmark](sudoku/easy_puzzles_per_sec.png)
+![Easy puzzle benchmark](images/easy_puzzles_per_sec.png)
 
 | Language | avg ms/run | puzzles/sec | wall sec |
 |----------|-----------:|------------:|---------:|
@@ -118,7 +118,7 @@ To quickly benchmark the performance of each implementation, I ran each solver o
 | Rust     | 0.006161   | 162,311     | 6.162    |
 
 
-![Hard puzzle benchmark](sudoku/hard_puzzles_per_sec.png)
+![Hard puzzle benchmark](images/hard_puzzles_per_sec.png)
 
 | Language | avg ms/run | puzzles/sec | wall sec |
 |----------|-----------:|------------:|---------:|

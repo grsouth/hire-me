@@ -185,7 +185,11 @@ const Education = ({ educationBlock }: { educationBlock: EducationBlock }) => (
       ))}
     </div>
     <div className="education-diploma">
-      <img src="/diploma.png" alt="Diploma" loading="lazy" />
+      <img
+        src={`${import.meta.env.BASE_URL}assets/images/resume/diploma.png`}
+        alt="Diploma"
+        loading="lazy"
+      />
     </div>
   </section>
 );

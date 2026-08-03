@@ -1,0 +1,205 @@
+@import url("https://fonts.bunny.net/css?family=source-sans-3:400,500,600,700|fantasque-sans-mono:400,700");
+
+:root {
+  color-scheme: dark;
+  --page-bg: #141414;
+  --page-panel: #1b1a18;
+  --page-panel-raised: #201f1d;
+  --page-text: #ece9e3;
+  --page-muted: #aaa39a;
+  --page-faint: #7f776e;
+  --page-border: #393631;
+  --page-border-strong: #504b43;
+  --page-accent: #b77a58;
+}
+
+body {
+  background: var(--page-bg) !important;
+  color: var(--page-text) !important;
+  font-family: "Source Sans 3", "Inter", "Segoe UI", system-ui, sans-serif !important;
+  line-height: 1.55;
+}
+
+.tilde-bg {
+  display: none !important;
+}
+
+.page {
+  max-width: 860px !important;
+  padding: 44px 22px 76px !important;
+}
+
+.page::before {
+  content: "Garrett Southam / project archive";
+  display: block;
+  padding-bottom: 14px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--page-border);
+  color: var(--page-faint);
+  font-family: "Fantasque Sans Mono", ui-monospace, monospace;
+  font-size: 13px;
+}
+
+.eyebrow {
+  color: var(--page-faint) !important;
+  letter-spacing: 0.08em !important;
+  text-transform: none !important;
+  font-family: "Fantasque Sans Mono", ui-monospace, monospace;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+}
+
+h1 {
+  max-width: 760px;
+  color: var(--page-text) !important;
+  font-size: clamp(34px, 5vw, 50px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: -0.015em !important;
+}
+
+.lede {
+  max-width: 720px;
+  color: #d8d3ca !important;
+}
+
+.link {
+  display: inline-flex;
+  border: 1px solid var(--page-border-strong) !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: var(--page-text) !important;
+  padding: 7px 10px !important;
+  font-size: 14px;
+  text-decoration: none !important;
+}
+
+.link:hover {
+  border-color: var(--page-accent) !important;
+  color: #f4d4bf !important;
+}
+
+.link-top {
+  margin-bottom: 30px !important;
+}
+
+.md-content {
+  margin-top: 28px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.md-content h2,
+.md-content h3,
+.md-content h4,
+.md-content h5 {
+  color: var(--page-text) !important;
+}
+
+.md-content h2 {
+  margin-top: 42px !important;
+  padding-top: 22px !important;
+  border-top: 1px solid var(--page-border) !important;
+  font-size: 25px !important;
+}
+
+.md-content h2:first-of-type {
+  margin-top: 12px !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+.md-content h3 {
+  font-size: 20px !important;
+}
+
+.md-content h4,
+.md-content h5 {
+  color: #d8d3ca !important;
+  letter-spacing: 0.04em !important;
+}
+
+.md-content p,
+.md-content li,
+.md-content td,
+.md-content th {
+  color: #d8d3ca !important;
+}
+
+.md-content p:first-of-type {
+  color: var(--page-text) !important;
+}
+
+.md-content a {
+  color: #f1c9ae !important;
+  text-decoration-color: rgba(241, 201, 174, 0.45) !important;
+}
+
+.md-content img,
+.video-embed {
+  border: 1px solid var(--page-border) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  background: var(--page-panel) !important;
+}
+
+.md-content code,
+.md-content pre {
+  font-family: "Fantasque Sans Mono", ui-monospace, monospace !important;
+  border-color: var(--page-border) !important;
+  border-radius: 6px !important;
+  background: #101010 !important;
+}
+
+.md-content table {
+  border-color: var(--page-border) !important;
+  border-radius: 8px !important;
+  background: var(--page-panel) !important;
+}
+
+.md-content th {
+  background: #24221f !important;
+  color: var(--page-text) !important;
+}
+
+.shot {
+  border: 1px solid var(--page-border) !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  background: var(--page-panel) !important;
+}
+
+.gallery {
+  column-gap: 18px !important;
+}
+
+.lightbox {
+  background: rgba(20, 20, 20, 0.94) !important;
+}
+
+.lightbox img {
+  border-radius: 8px !important;
+  border-color: var(--page-border-strong) !important;
+  box-shadow: none !important;
+}
+
+.card {
+  border: 1px solid var(--page-border) !important;
+  border-radius: 8px !important;
+  background: var(--page-panel) !important;
+}
+
+.meta {
+  color: var(--page-muted) !important;
+}
+
+.error {
+  color: #ef9a9a !important;
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 34px 18px 64px !important;
+  }
+}
